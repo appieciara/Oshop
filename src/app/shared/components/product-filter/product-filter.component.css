@@ -1,0 +1,5 @@
+.fixed-top {
+    position: fixed; 
+    width: 17%;
+    top: 80px; 
+}

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/">Brand</a>
+          </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a routerLink="/shopping-cart">
+                Shopping Cart
+                <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">{{ cart.totalItemCount }}</span>
+                </a>
+              </li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <ng-template #anonymousUser>
+                  <li><a routerLink="/login">Login</a></li>
+                </ng-template>
+                <li ngbDropdown *ngIf="appUser; else anonymousUser" class="dropdown">
+                  <a  ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{ appUser.name }}
+                    <span class="caret"></span>
+                  </a>
+                  <ul ngbDropdownMenu class="dropdown-menu">
+                    <li><a routerLink="/my/order">My Order</a></li>
+                    <ng-container *ngIf="appUser.isAdmin">
+                      <li><a routerLink="/admin/orders">Manage Order</a></li>
+                      <li><a routerLink="/admin/products">Manage Products</a></li>
+                    </ng-container>
+                    <li><a (click)="logout()">LogOut</a></li>
+                  </ul>
+                </li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+  </div>
+</nav>

@@ -1,0 +1,18 @@
+
+<div class="fixed-top">
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" routerLink="/" [class.active]="!selectedCategory">
+          All Categories
+        </a>
+        <a class="list-group-item list-group-item-action" 
+        *ngFor="let c of categories$ | async" 
+        routerLink="/" 
+        [queryParams]="{ category: c.name | lowercase }" 
+        [class.active]="selectedCategory == c.name"
+        >
+            {{ c.name }}
+        </a>
+    </div>
+</div>
+
+

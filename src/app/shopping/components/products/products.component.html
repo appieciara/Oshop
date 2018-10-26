@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+    <!-- List the Categories for Products Filtering  -->
+    <product-filter [category]="selectedCategory"></product-filter>
+  </div>
+  <!-- Lists the Products -->
+  <div class="col-md-9 products" *ngIf="cart$ | async as cart">
+      <ng-container *ngFor="let p of filteredProduct; let i = index">        
+        <div class="col-md-6">
+          <!-- Product Detail -->
+          <product-cart [product]="p" [shopping-cart]="cart" ></product-cart>
+        </div>
+        <div *ngIf="(i + 1) % 2 === 0" class=""><br/><br/></div>
+      </ng-container>
+  </div>
+</div>
